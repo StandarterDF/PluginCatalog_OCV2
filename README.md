@@ -4,8 +4,8 @@
 репозитории; здесь собраны ссылки, версии и краткое описание того, что он
 делает.
 
-Актуально на **1 ноября 2026**. Большинство плагинов проверено на OpenCode
-**2.2.5**; LocalAI — на 2.0.24 (см. его README).
+Актуально на **8 ноября 2026**. Большинство плагинов проверено на OpenCode
+**2.2.5**; GoCost — на **2.2.6**, LocalAI — на 2.0.24 (см. его README).
 
 ## Плагины
 
@@ -13,7 +13,7 @@
 |---|---:|---|---|---|
 | **CompactionSlider** | 0.2.1 | сервер + TUI | Слайдер порога авто-compaction для выбранной модели: 10–99 % от реального контекста, точная настройка с 95 % шагом 1 %. Команда `/ctx-percent`. | [CompactionSlider_OCV2](https://github.com/StandarterDF/CompactionSlider_OCV2) |
 | **DeepSeekPeak** | 0.1.2 | TUI | Показывает `Peak` / `Non-Peak` в футере только для моделей DeepSeek. Учитывает окна 01:00–04:00 и 06:00–10:00 UTC по будням и праздники КНР 2026. Команда `/deepseek-peak`. | [DeepSeekPeak_OCV2](https://github.com/StandarterDF/DeepSeekPeak_OCV2) |
-| **GoCost** | 0.2.0 | TUI | Возвращает стоимость сессии для OpenCode Go: подменяет `context.data.session.cost`, считает оценку по токенам и ценам каталога и отдаёт её встроенному футеру. | [GoCost_OCV2](https://github.com/StandarterDF/GoCost_OCV2) |
+| **GoCost** | 0.3.0 | TUI | Возвращает стоимость сессии для OpenCode Go и показывает в правой панели лимиты подписки: 5-часовое окно, неделю и месяц с процентами, полосами и сбросом. | [GoCost_OCV2](https://github.com/StandarterDF/GoCost_OCV2) |
 | **LocalAI** | 0.4.1 | сервер | Подхватывает модели локального OpenAI-совместимого сервера (llama.cpp / llama-swap) и публикует их в провайдере `opencode` под алиасами `local-*`. | [OpenCode_ContextFetcher](https://github.com/StandarterDF/OpenCode_ContextFetcher) |
 | **MCPClassify** | 0.2.4 | TUI | Заменяет плоскую MCP-секцию сайдбара деревом классов: `MCP (N)` → `Класс (Nk)` → серверы. Сворачивание запоминается, клик подключает/отключает сервер. | [MCPClassify_OCV2](https://github.com/StandarterDF/MCPClassify_OCV2) |
 | **ModelsDisabler** | 0.1.0 | сервер | Скрывает платные модели OpenCode Zen / OpenCode Go, оставляя бесплатные и модели из allowlist. Настраивается через `keep` и `unknown`. | [ModelsDisabler_OCV2](https://github.com/StandarterDF/ModelsDisabler_OCV2) |
@@ -46,6 +46,10 @@ OpenCode Go присылает `cost = 0`, поэтому встроенный �
 токенам сессии и ценам каталога моделей. Сумма появляется в штатном месте — там
 же, где её рисует встроенный футер, — и форматируется его же
 `Intl.NumberFormat`. Это оценка по прайс-листу, а не счёт провайдера.
+
+Там же, в правой панели, показываются лимиты OpenCode Go: 5-часовое окно,
+неделя и месяц. Для каждого — процент, тематическая полоса и обратный отсчёт до
+сброса; данные берутся из того же кэша, что у встроенного диалога Usage.
 
 ### LocalAI
 
